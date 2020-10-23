@@ -1,5 +1,3 @@
-import { string } from 'yup';
-
 type AddressType = {
   line_1: string;
   line_2: string;

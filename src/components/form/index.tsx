@@ -1,14 +1,16 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 // ts-expect-error
 import * as Yup from 'yup';
-import { FormValuesType, FormErrorsType } from './types';
+
+import { FormContainer, FormInput, Form, SubmitButton } from './styled';
+import { createQuote } from '../../api';
 import '../../App.css';
 
 function RatingInformationForm() {
-  const submitForm = (e: any) => {
-    e.preventDefault();
-    console.log('howdy');
+  const submitForm = (values: any) => {
+    createQuote(values);
+    console.log(values);
   };
   const initialValues = {
     first_name: '',
@@ -46,9 +48,9 @@ function RatingInformationForm() {
           handleBlur,
         } = formik;
         return (
-          <div className="form-container">
-            <form className="form" onSubmit={handleSubmit}>
-              <input
+          <FormContainer>
+            <Form onSubmit={handleSubmit}>
+              <FormInput
                 type="first_name"
                 name="first_name"
                 id="first_name"
@@ -56,16 +58,9 @@ function RatingInformationForm() {
                 value={values.first_name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${
-                  errors.first_name && touched.first_name ? 'input-error' : ''
-                }`}
+                inputError={errors.first_name && touched.first_name}
               />
-              <ErrorMessage
-                name="first_name"
-                component="span"
-                className="error-message"
-              />
-              <input
+              <FormInput
                 type="last_name"
                 name="last_name"
                 id="last_name"
@@ -73,12 +68,10 @@ function RatingInformationForm() {
                 value={values.last_name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${
-                  errors.last_name && touched.last_name ? 'input-error' : ''
-                }`}
+                inputError={errors.last_name && touched.last_name}
               />
               <label htmlFor="address">Address</label>
-              <input
+              <FormInput
                 type="line_1"
                 name="line_1"
                 id="line_1"
@@ -86,11 +79,12 @@ function RatingInformationForm() {
                 value={values.line_1}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                inputError={errors.line_1 && touched.line_1}
                 className={`form-input full-row ${
                   errors.line_1 && touched.line_1 ? 'input-error' : ''
                 }`}
               />
-              <input
+              <FormInput
                 type="line_2"
                 name="line_2"
                 id="line_2"
@@ -98,11 +92,10 @@ function RatingInformationForm() {
                 value={values.line_2}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input full-row ${
-                  errors.line_2 && touched.line_2 ? 'input-error' : ''
-                }`}
+                inputError={errors.line_2 && touched.line_2}
+                className="full-row"
               />
-              <input
+              <FormInput
                 type="city"
                 name="city"
                 id="city"
@@ -110,11 +103,10 @@ function RatingInformationForm() {
                 value={values.city}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input full-row ${
-                  errors.city && touched.city ? 'input-error' : ''
-                }`}
+                inputError={errors.city && touched.city}
+                className="full-row"
               />
-              <input
+              <FormInput
                 type="region"
                 name="region"
                 id="region"
@@ -122,11 +114,9 @@ function RatingInformationForm() {
                 value={values.region}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${
-                  errors.region && touched.region ? 'input-error' : ''
-                }`}
+                inputError={errors.region && touched.region}
               />
-              <input
+              <FormInput
                 type="postal"
                 name="postal"
                 id="postal"
@@ -134,13 +124,15 @@ function RatingInformationForm() {
                 value={values.postal}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${
-                  errors.postal && touched.postal ? 'input-error' : ''
-                }`}
+                inputError={errors.postal && touched.postal}
               />
-              <input value="Submit" type="submit" className="submit-button" />
-            </form>
-          </div>
+              <SubmitButton
+                value="Submit"
+                type="submit"
+                className="submit-button"
+              />
+            </Form>
+          </FormContainer>
         );
       }}
     </Formik>
