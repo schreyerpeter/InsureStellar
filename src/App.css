@@ -2,20 +2,91 @@
   background-color: #0c2975;
   color: #fff;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 24px;
+  height: 60vmin;
 }
 
 .app-logo {
-  height: 4vmin;
+  height: 3vmin;
   pointer-events: none;
 }
 
 .app-header {
-  height: 6vmin;
+  padding: 2vmin 6vmin;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   color: white;
   display: flex;
   flex-direction: row;
+}
+
+.app-body {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+.app-header img {
+  margin-right: 6vmin;
+}
+
+/* FORM CLASSES */
+
+.form-input {
+  height: 48px;
+  margin-bottom: 0;
+  padding: 3px 0 0 18px;
+  border-color: rgba(20, 20, 20, 0.1);
+  border-radius: 6px;
+  -webkit-transition: border 0.2s ease;
+  transition: border 0.2s ease;
+  font-family: Montserrat, sans-serif;
+  color: #141414;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  position: relative;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.error-message {
+  position: absolute;
+  top: 5px;
+}
+
+.input-error {
+  border: 2px solid red;
+}
+
+.form {
+  display: grid;
+  max-width: 480px;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.full-row {
+  grid-column: span 2;
+}
+
+.submit-button {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 12px 24px;
+  border-radius: 4px;
+  background-color: #1c53e7;
+  font-family: Montserrat, sans-serif;
+  text-align: center;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: white;
 }
