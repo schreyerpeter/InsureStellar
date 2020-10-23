@@ -1,8 +1,14 @@
-import { FormValuesType } from '../types';
+import * as actionTypes from '../action-types';
+import { FormValuesType } from '../../types';
 
 const BASE_URL = 'https://fed-challenge-api.sure.now.sh';
 
-export const createQuote = async (fields: FormValuesType) => {
+export const createQuote = (fields: FormValuesType) => async (
+  dispatch: Function,
+) => {
+  dispatch({
+    type: actionTypes.CREATE_QUOTE_FETCHING,
+  });
   const {
     first_name,
     last_name,
@@ -29,8 +35,15 @@ export const createQuote = async (fields: FormValuesType) => {
       body: JSON.stringify(data),
     });
     const json = await result.json();
-    console.log(json);
+    dispatch({
+      type: actionTypes.CREATE_QUOTE_SUCCESS,
+      payload: json,
+    });
+    return true;
   } catch (err) {
-    console.log(err);
+    dispatch({
+      type: actionTypes.CREATE_QUOTE_ERROR,
+    });
+    return false;
   }
 };

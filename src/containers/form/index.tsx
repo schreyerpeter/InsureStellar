@@ -1,16 +1,19 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 // ts-expect-error
 import * as Yup from 'yup';
 
 import { FormContainer, FormInput, Form, SubmitButton } from './styled';
-import { createQuote } from '../../api';
+import { createQuote } from '../../redux/actions';
 import '../../App.css';
 
-function RatingInformationForm() {
-  const submitForm = (values: any) => {
-    createQuote(values);
-    console.log(values);
+function RatingInformationForm(props: any) {
+  const submitForm = async (values: any) => {
+    console.log(props);
+    const result = await props.createQuote(values);
+    console.warn(result);
   };
   const initialValues = {
     first_name: '',
@@ -54,7 +57,7 @@ function RatingInformationForm() {
                 type="first_name"
                 name="first_name"
                 id="first_name"
-                placeholder={'First Name'}
+                placeholder="First Name"
                 value={values.first_name}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -64,7 +67,7 @@ function RatingInformationForm() {
                 type="last_name"
                 name="last_name"
                 id="last_name"
-                placeholder={'Last Name'}
+                placeholder="Last Name"
                 value={values.last_name}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -75,7 +78,7 @@ function RatingInformationForm() {
                 type="line_1"
                 name="line_1"
                 id="line_1"
-                placeholder={'Address Line 1'}
+                placeholder="Address Line 1"
                 value={values.line_1}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -88,7 +91,7 @@ function RatingInformationForm() {
                 type="line_2"
                 name="line_2"
                 id="line_2"
-                placeholder={'Address Line 2'}
+                placeholder="Address Line 2"
                 value={values.line_2}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -99,7 +102,7 @@ function RatingInformationForm() {
                 type="city"
                 name="city"
                 id="city"
-                placeholder={'City'}
+                placeholder="City"
                 value={values.city}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -110,7 +113,7 @@ function RatingInformationForm() {
                 type="region"
                 name="region"
                 id="region"
-                placeholder={'Region'}
+                placeholder="Region"
                 value={values.region}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -120,7 +123,7 @@ function RatingInformationForm() {
                 type="postal"
                 name="postal"
                 id="postal"
-                placeholder={'Postal'}
+                placeholder="Postal"
                 value={values.postal}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -139,4 +142,8 @@ function RatingInformationForm() {
   );
 }
 
-export default RatingInformationForm;
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators({ createQuote }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(RatingInformationForm);
