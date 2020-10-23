@@ -44,11 +44,9 @@ function RatingInformationForm() {
           errors,
           touched,
           handleBlur,
-          isValid,
-          dirty,
         } = formik;
         return (
-          <div className="container">
+          <div className="form-container">
             <form className="form" onSubmit={handleSubmit}>
               <input
                 type="first_name"
@@ -140,14 +138,7 @@ function RatingInformationForm() {
                   errors.postal && touched.postal ? 'input-error' : ''
                 }`}
               />
-              <input
-                value="Submit"
-                type="submit"
-                className={`submit-button ${
-                  dirty && isValid ? '' : 'disabled-btn'
-                }`}
-                disabled={!(dirty && isValid)}
-              />
+              <input value="Submit" type="submit" className="submit-button" />
             </form>
           </div>
         );

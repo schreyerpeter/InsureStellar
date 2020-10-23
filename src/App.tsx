@@ -17,6 +17,7 @@ function App() {
         </div>
       </div>
       <div className="app-body">
+        <h2>Get in touch</h2>
         <Form />
         <img src={background} className="app-background" alt="background" />
       </div>
