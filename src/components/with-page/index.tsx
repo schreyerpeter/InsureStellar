@@ -12,7 +12,7 @@ const AppContainer = styled.div`
   overflow: hidden;
 `;
 
-const AppHeader = styled.div`
+const AppHeader = styled.header`
   margin: auto;
   max-width: 1204px;
   display: flex;

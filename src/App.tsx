@@ -1,9 +1,10 @@
 import React from 'react';
 // ts-expect-error
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import WithPage from './components/with-page';
 import Form from './containers/form';
+import Overview from './containers/overview';
 import background from './bg.svg';
 import './App.css';
 
@@ -26,14 +27,14 @@ function App() {
     <Router>
       <WithPage>
         <Switch>
-          <Route path="/overview">
-            <div>Overview</div>
-          </Route>
-          <Route path="/">
+          <Route exact path="/">
             <>
               <h2>Get in touch</h2>
               <Form />
             </>
+          </Route>
+          <Route path="/overview">
+            <Overview />
           </Route>
         </Switch>
         <AppHero src={background} className="app-background" alt="background" />
