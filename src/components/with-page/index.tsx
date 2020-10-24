@@ -10,6 +10,7 @@ const AppContainer = styled.div`
   font-size: 24px;
   height: 100%;
   overflow: hidden;
+  min-height: 800px;
 `;
 
 const AppHeader = styled.header`
@@ -22,6 +23,7 @@ const AppHeader = styled.header`
   display: flex;
   flex-direction: row;
   min-height: 10vmin;
+  padding: 16px 0;
 
   img {
     margin-right: 6vmin;
@@ -40,6 +42,12 @@ const AppBody = styled.div`
   }
 `;
 
+const Rocket = styled.span`
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+
 const AppLogo = styled.img`
   min-height: 3vmin;
   pointer-events: none;
@@ -53,9 +61,9 @@ function WithPage({ children }: { children: ReactNode }) {
         <AppLogo src={logo} className="app-logo" alt="logo" />
         <div>
           InsureStellar{' '}
-          <span role="img" aria-label="🚀">
+          <Rocket role="img" aria-label="🚀">
             🚀
-          </span>
+          </Rocket>
         </div>
       </AppHeader>
       <AppBody>{children}</AppBody>

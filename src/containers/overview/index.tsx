@@ -6,7 +6,14 @@ import { withRouter } from 'react-router-dom';
 // ts-expect-error
 import * as Yup from 'yup';
 
-import { FormContainer, FormInput, Form, SubmitButton } from './styled';
+import {
+  FormContainer,
+  FormInput,
+  Form,
+  SubmitButton,
+  ReturnButton,
+  ErrorMessage,
+} from './styled';
 import { createQuote } from '../../redux/actions';
 import '../../App.css';
 
@@ -25,6 +32,21 @@ function RatingInformationForm(props: any) {
   const SubmitSchema = Yup.object().shape({});
 
   console.log(props.quote);
+  if (!variableOptions) {
+    return (
+      <ErrorMessage>
+        <p>Something went wrong.</p>
+        <ReturnButton
+          onClick={() => {
+            props.history.push('/');
+          }}
+        >
+          Return to homepage
+        </ReturnButton>
+      </ErrorMessage>
+    );
+  }
+
   return (
     <Formik
       initialValues={initialValues}

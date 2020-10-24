@@ -65,6 +65,7 @@ function RatingInformationForm(props: any) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 inputError={errors.first_name && touched.first_name}
+                className="form-input"
               />
               <FormInput
                 type="last_name"
@@ -75,6 +76,7 @@ function RatingInformationForm(props: any) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 inputError={errors.last_name && touched.last_name}
+                className="form-input"
               />
               <label htmlFor="address">Address</label>
               <FormInput
@@ -121,6 +123,7 @@ function RatingInformationForm(props: any) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 inputError={errors.region && touched.region}
+                className="form-input"
               />
               <FormInput
                 type="postal"
@@ -131,6 +134,7 @@ function RatingInformationForm(props: any) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 inputError={errors.postal && touched.postal}
+                className="form-input"
               />
               <SubmitButton
                 value="Submit"

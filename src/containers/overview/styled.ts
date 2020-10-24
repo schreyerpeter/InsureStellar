@@ -1,61 +1,27 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
+import { BaseButton, BaseFormInput, BaseForm } from '../form/styled';
 
 export const FormContainer = styled.div`
   margin: 2vmin auto 2vmin auto;
 `;
 
 export const FormInput = styled(Field)`
-  height: 48px;
-  margin-bottom: 0;
-  padding: 3px 0 0 18px;
-  border-color: rgba(20, 20, 20, 0.1);
-  border-radius: 6px;
-  -webkit-transition: border 0.2s ease;
-  transition: border 0.2s ease;
-  font-family: Montserrat, sans-serif;
-  color: #141414;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  position: relative;
-  ${({ inputError }: { inputError: any }) =>
-    inputError && 'border: 2px solid red;'}
+  ${BaseFormInput}
 `;
 
 export const Form = styled.form`
-  margin-left: 16px;
-  display: grid;
-  max-width: 480px;
-  grid-template-rows: auto auto;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  grid-template-columns: 1fr;
+  ${BaseForm}
 `;
 
 export const SubmitButton = styled.input`
-  margin-right: 0;
-  margin-left: 0;
-  padding: 12px 24px;
-  border-radius: 4px;
-  background-color: #1c53e7;
-  font-family: Montserrat, sans-serif;
-  text-align: center;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-  color: white;
-  outline: none;
-  border: 1px solid transparent;
-  height: 48px;
-  font-size: 16px;
+  ${BaseButton}
+`;
 
-  :hover {
-    cursor: pointer;
-    background-color: #4975ec;
-  }
+export const ReturnButton = styled.button`
+  ${BaseButton}
+`;
 
-  :active {
-    border: 1px solid white;
-    border-radius: 4px;
-  }
+export const ErrorMessage = styled.div`
+  margin-left: 16px;
 `;
