@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 // ts-expect-error
 import * as Yup from 'yup';
 
@@ -11,9 +12,11 @@ import '../../App.css';
 
 function RatingInformationForm(props: any) {
   const submitForm = async (values: any) => {
-    console.log(props);
-    const result = await props.createQuote(values);
-    console.warn(result);
+    const { createQuote, history } = props;
+    const success = await createQuote(values);
+    if (success) {
+      history.push('/overview');
+    }
   };
   const initialValues = {
     first_name: '',
@@ -146,4 +149,6 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ createQuote }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(RatingInformationForm);
+export default withRouter(
+  connect(null, mapDispatchToProps)(RatingInformationForm),
+);
