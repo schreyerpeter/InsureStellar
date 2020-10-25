@@ -1,28 +1,61 @@
-var express = require('express');
-var app = express();
-var path = require('path');
+const express = require('express');
+const path = require('path');
+const request = require('request');
+const bodyParser = require('body-parser');
 
-var publicPath = path.join(__dirname, 'public');
-app.use(express.static(publicPath));
+const app = express();
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+const BASE_URL = 'https://fed-challenge-api.sure.now.sh';
+
+// app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/', function (req, res, next) {
-  res.sendStatus(200);
-});
-
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader(
+app.use(bodyParser.json());
+// app.use('/public', express.static('public'));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Content-Type', 'application/json');
+  res.header(
     'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
+    'Origin, X-Requested-With, Content-Type, Accept',
   );
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 });
 
-var PORT = process.env.PORT || 8080;
+app.post('/quotes', (req, res) => {
+  request.post(
+    {
+      method: 'POST',
+      url: `${BASE_URL}/api/v1/quotes`,
+      body: JSON.stringify(req.body),
+    },
+    (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        res.send(body);
+      } else res.sendStatus(400);
+    },
+  );
+});
+app.put('/quotes/:quoteId', (req, res) => {
+  request.put(
+    {
+      method: 'PUT',
+      url: `${BASE_URL}/api/v1/quotes/${req.params.quoteId}`,
+      body: JSON.stringify(req.body),
+    },
+    (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        res.send(body);
+      } else res.sendStatus(400);
+    },
+  );
+});
+
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT);

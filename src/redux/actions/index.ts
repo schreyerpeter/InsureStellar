@@ -1,8 +1,6 @@
 import * as actionTypes from '../action-types';
 import { FormValuesType, UpdateQuoteParamsType } from '../../types';
 
-const BASE_URL = 'https://fed-challenge-api.sure.now.sh';
-
 export const createQuote = (fields: FormValuesType) => async (
   dispatch: Function,
 ) => {
@@ -30,9 +28,14 @@ export const createQuote = (fields: FormValuesType) => async (
     },
   };
   try {
-    const result = await fetch(`${BASE_URL}/api/v1/quotes`, {
+    console.warn(JSON.stringify(data));
+    const result = await fetch('/quotes', {
       method: 'POST',
       body: JSON.stringify(data),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
     const json = await result.json();
     dispatch({
@@ -68,9 +71,13 @@ export const updateQuote = (field: UpdateQuoteParamsType) => async (
     },
   };
   try {
-    const result = await fetch(`${BASE_URL}/api/v1/quotes/${quoteId}`, {
+    const result = await fetch(`/quotes/${quoteId}`, {
       method: 'PUT',
       body: JSON.stringify(data),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
     const json = await result.json();
     dispatch({
