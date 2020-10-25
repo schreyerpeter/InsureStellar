@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 // ts-expect-error
 import styled from 'styled-components';
 import logo from '../../logo.svg';
@@ -58,7 +59,9 @@ function WithPage({ children }: { children: ReactNode }) {
   return (
     <AppContainer>
       <AppHeader>
-        <AppLogo src={logo} className="app-logo" alt="logo" />
+        <Link to="/">
+          <AppLogo src={logo} className="app-logo" alt="logo" />
+        </Link>
         <div>
           InsureStellar{' '}
           <Rocket role="img" aria-label="🚀">

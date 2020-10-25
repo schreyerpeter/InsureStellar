@@ -25,3 +25,13 @@ export const ReturnButton = styled.button`
 export const ErrorMessage = styled.div`
   margin-left: 16px;
 `;
+
+export const StyledLabel = styled.label`
+  @media (max-width: 992px) {
+    grid-column: span 2;
+  }
+  span {
+    font-size: 12px;
+    line-height: 12px;
+  }
+`;

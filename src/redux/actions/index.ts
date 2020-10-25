@@ -1,5 +1,5 @@
 import * as actionTypes from '../action-types';
-import { FormValuesType } from '../../types';
+import { FormValuesType, UpdateQuoteParamsType } from '../../types';
 
 const BASE_URL = 'https://fed-challenge-api.sure.now.sh';
 
@@ -43,6 +43,44 @@ export const createQuote = (fields: FormValuesType) => async (
   } catch (err) {
     dispatch({
       type: actionTypes.CREATE_QUOTE_ERROR,
+    });
+    return false;
+  }
+};
+
+export const updateQuote = (fields: UpdateQuoteParamsType) => async (
+  dispatch: Function,
+  getState: Function,
+) => {
+  dispatch({
+    type: actionTypes.UPDATE_QUOTE_FETCHING,
+  });
+  const {
+    quote: { quoteId, rating_address, policy_holder },
+  } = getState();
+
+  const data = {
+    quote: {
+      quoteId,
+      rating_address,
+      policy_holder,
+      variable_selections: fields,
+    },
+  };
+  try {
+    const result = await fetch(`${BASE_URL}/api/v1/quotes/${quoteId}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+    const json = await result.json();
+    dispatch({
+      type: actionTypes.UPDATE_QUOTE_SUCCESS,
+      payload: json,
+    });
+    return true;
+  } catch (err) {
+    dispatch({
+      type: actionTypes.UPDATE_QUOTE_ERROR,
     });
     return false;
   }
