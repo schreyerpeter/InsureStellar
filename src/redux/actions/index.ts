@@ -48,7 +48,7 @@ export const createQuote = (fields: FormValuesType) => async (
   }
 };
 
-export const updateQuote = (fields: UpdateQuoteParamsType) => async (
+export const updateQuote = (field: UpdateQuoteParamsType) => async (
   dispatch: Function,
   getState: Function,
 ) => {
@@ -56,7 +56,7 @@ export const updateQuote = (fields: UpdateQuoteParamsType) => async (
     type: actionTypes.UPDATE_QUOTE_FETCHING,
   });
   const {
-    quote: { quoteId, rating_address, policy_holder },
+    quote: { quoteId, rating_address, policy_holder, variable_selections },
   } = getState();
 
   const data = {
@@ -64,7 +64,7 @@ export const updateQuote = (fields: UpdateQuoteParamsType) => async (
       quoteId,
       rating_address,
       policy_holder,
-      variable_selections: fields,
+      variable_selections: { ...variable_selections, ...field },
     },
   };
   try {

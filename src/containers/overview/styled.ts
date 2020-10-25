@@ -14,10 +14,6 @@ export const Form = styled.form`
   ${BaseForm}
 `;
 
-export const SubmitButton = styled.input`
-  ${BaseButton}
-`;
-
 export const ReturnButton = styled.button`
   ${BaseButton}
 `;
