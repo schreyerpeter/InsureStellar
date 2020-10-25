@@ -2,7 +2,12 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-app.use(express.static(path.join(__dirname)));
+var publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
 
 app.get('/', function (req, res, next) {
   res.sendStatus(200);
