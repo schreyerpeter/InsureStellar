@@ -7,14 +7,12 @@ const app = express();
 
 const BASE_URL = 'https://fed-challenge-api.sure.now.sh';
 
-// app.get('/*', function (req, res, next) {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-//   next();
-// });
-// app.get('/', function (req, res, next) {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-//   next();
-// });
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   // res.header('Content-Type', 'application/json');
