@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 // ts-expect-error
 import * as Yup from 'yup';
 
+import { AppStateType } from '../../types';
 import { FormContainer, FormInput, Form, SubmitButton } from './styled';
 import { createQuote } from '../../redux/actions';
 import '../../App.css';
@@ -29,13 +30,13 @@ function RatingInformationForm(props: any) {
   };
 
   const SubmitSchema = Yup.object().shape({
-    first_name: Yup.string().required('First name is required'),
-    last_name: Yup.string().required('Last name is required'),
-    line_1: Yup.string().required('Address is required'),
+    first_name: Yup.string().required(),
+    last_name: Yup.string().required(),
+    line_1: Yup.string().required(),
     line_2: Yup.string(),
-    city: Yup.string().required('City is required'),
-    region: Yup.string().required('Region is required'),
-    postal: Yup.number().required('Postal code is required'),
+    city: Yup.string().required(),
+    region: Yup.string().required(),
+    postal: Yup.number().required(),
   });
 
   return (
@@ -153,6 +154,10 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ createQuote }, dispatch);
 };
 
+const mapStateToProps = (state: AppStateType) => {
+  return { quote: state.quote };
+};
+
 export default withRouter(
-  connect(null, mapDispatchToProps)(RatingInformationForm),
+  connect(mapStateToProps, mapDispatchToProps)(RatingInformationForm),
 );

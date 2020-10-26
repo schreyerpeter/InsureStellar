@@ -28,7 +28,6 @@ export const createQuote = (fields: FormValuesType) => async (
     },
   };
   try {
-    console.warn(JSON.stringify(data));
     const result = await fetch('/quotes', {
       method: 'POST',
       body: JSON.stringify(data),

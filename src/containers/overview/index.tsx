@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 
+import { AppStateType } from '../../types';
 import {
   FormContainer,
   FormInput,
@@ -11,7 +12,6 @@ import {
   ErrorMessage,
   StyledLabel,
 } from './styled';
-
 import { updateQuote } from '../../redux/actions';
 
 function RatingInformationForm(props: any) {
@@ -35,10 +35,13 @@ function RatingInformationForm(props: any) {
       </ErrorMessage>
     );
   }
-
+  const premiumInDollars = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(premium);
   return (
     <Fragment>
-      <h2>Your annual premium is ${premium.toFixed(2)}</h2>
+      <h2>Your annual premium is {premiumInDollars}</h2>
       <FormContainer>
         <Form>
           {Object.keys(variableOptions).map((option) => (
@@ -56,7 +59,7 @@ function RatingInformationForm(props: any) {
                   handleChange(e, option);
                 }}
               >
-                {variableOptions[option].values.map((value: any) => (
+                {variableOptions[option].values.map((value: number) => (
                   <option key={value} value={value}>
                     {value}
                   </option>
@@ -74,7 +77,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ updateQuote }, dispatch);
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppStateType) => {
   return { quote: state.quote };
 };
 

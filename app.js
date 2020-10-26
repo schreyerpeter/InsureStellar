@@ -15,7 +15,6 @@ app.get('/*', function (req, res) {
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Content-Type', 'application/json');
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept',
@@ -26,9 +25,6 @@ app.use((req, res, next) => {
 });
 app.use(bodyParser.json());
 app.use(express.static('public'));
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
-// }
 
 app.post('/quotes', (req, res) => {
   request.post(
