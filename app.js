@@ -7,17 +7,17 @@ const app = express();
 
 const BASE_URL = 'https://fed-challenge-api.sure.now.sh';
 
-// app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.use(bodyParser.json());
-// app.use('/public', express.static('public'));
+// app.get('/*', function (req, res, next) {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+//   next();
+// });
+// app.get('/', function (req, res, next) {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+//   next();
+// });
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Content-Type', 'application/json');
+  // res.header('Content-Type', 'application/json');
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept',
@@ -26,6 +26,11 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
+app.use(bodyParser.json());
+app.use(express.static('public'));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+// }
 
 app.post('/quotes', (req, res) => {
   request.post(
@@ -56,6 +61,6 @@ app.put('/quotes/:quoteId', (req, res) => {
   );
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT);
