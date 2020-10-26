@@ -11,7 +11,7 @@ const AppContainer = styled.div`
   font-size: 24px;
   height: 100%;
   overflow: hidden;
-  min-height: 800px;
+  min-height: 850px;
 `;
 
 const AppHeader = styled.header`
@@ -41,11 +41,7 @@ const AppBody = styled.div`
   z-index: 1;
   margin: auto;
   max-width: 1204px;
-  padding: 40px 0;
-
-  h2 {
-    margin-left: 16px;
-  }
+  padding: 40px 16px;
 `;
 
 const Rocket = styled.span`

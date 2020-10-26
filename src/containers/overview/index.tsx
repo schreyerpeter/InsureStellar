@@ -11,6 +11,7 @@ import {
   ReturnButton,
   ErrorMessage,
   StyledLabel,
+  OverviewContainer,
 } from './styled';
 import { updateQuote } from '../../redux/actions';
 
@@ -45,7 +46,7 @@ function RatingInformationForm(props: any) {
     currency: 'USD',
   }).format(premium);
   return (
-    <Fragment>
+    <OverviewContainer>
       <h2>Your annual premium is {premiumInDollars}</h2>
       <FormContainer>
         <Form>
@@ -78,7 +79,7 @@ function RatingInformationForm(props: any) {
       {hasError && (
         <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>
       )}
-    </Fragment>
+    </OverviewContainer>
   );
 }
 

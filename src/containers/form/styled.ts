@@ -60,7 +60,7 @@ export const BaseFormInput = css`
 `;
 
 export const BaseForm = css`
-  margin: 0 16px;
+  margin: 0;
   display: grid;
   max-width: 480px;
   grid-template-rows: auto auto;
@@ -70,7 +70,7 @@ export const BaseForm = css`
 `;
 
 export const ErrorMessage = styled.div`
-  margin: 16px;
+  margin: 16px 0;
 `;
 
 export const FormContainer = styled.div`

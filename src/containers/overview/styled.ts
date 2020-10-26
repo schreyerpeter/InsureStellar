@@ -18,9 +18,7 @@ export const ReturnButton = styled.button`
   ${BaseButton}
 `;
 
-export const ErrorMessage = styled.div`
-  margin-left: 16px;
-`;
+export const ErrorMessage = styled.div``;
 
 export const StyledLabel = styled.label`
   @media (max-width: 992px) {
@@ -30,4 +28,8 @@ export const StyledLabel = styled.label`
     font-size: 12px;
     line-height: 12px;
   }
+`;
+
+export const OverviewContainer = styled.div`
+  padding: 0;
 `;

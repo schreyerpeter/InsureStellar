@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import WithPage from './components/with-page';
-import Form from './containers/form';
+import Home from './components/home';
 import Overview from './containers/overview';
 import background from './bg.svg';
 import './App.css';
@@ -16,6 +16,7 @@ const AppHero = styled.img`
   left: auto;
   bottom: auto;
   z-index: 0;
+  pointer-events: none;
 
   @media (max-width: 992px) {
     display: none;
@@ -28,10 +29,7 @@ function App() {
       <WithPage>
         <Switch>
           <Route exact path="/">
-            <>
-              <h2>Get in touch</h2>
-              <Form />
-            </>
+            <Home />
           </Route>
           <Route path="/overview">
             <Overview />
