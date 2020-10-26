@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import newQuoteReducer from './create-quote';
+import quoteReducer from './quote';
 
 const insureStellarApp = combineReducers({
-  quote: newQuoteReducer,
+  quote: quoteReducer,
 });
 
 export default insureStellarApp;

@@ -38,9 +38,8 @@ type VariableSelectionType = {
 };
 
 export type AppStateType = {
-  hasError: false;
-  inProgress: false;
-  isFetching: false;
+  hasError: boolean;
+  isFetching: boolean;
   policy_holder: PolicyHolderType;
   premium: number;
   quote: {};

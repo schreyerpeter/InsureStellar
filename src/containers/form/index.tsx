@@ -7,7 +7,13 @@ import { withRouter } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { AppStateType } from '../../types';
-import { FormContainer, FormInput, Form, SubmitButton } from './styled';
+import {
+  FormContainer,
+  FormInput,
+  Form,
+  SubmitButton,
+  ErrorMessage,
+} from './styled';
 import { createQuote } from '../../redux/actions';
 import '../../App.css';
 
@@ -38,6 +44,8 @@ function RatingInformationForm(props: any) {
     region: Yup.string().required(),
     postal: Yup.number().required(),
   });
+
+  const { isFetching, hasError } = props.quote;
 
   return (
     <Formik
@@ -138,11 +146,16 @@ function RatingInformationForm(props: any) {
                 className="form-input"
               />
               <SubmitButton
+                disabled={isFetching}
                 value="Submit"
                 type="submit"
-                className="submit-button"
               />
             </Form>
+            {hasError && (
+              <ErrorMessage>
+                Something went wrong. Please try again.
+              </ErrorMessage>
+            )}
           </FormContainer>
         );
       }}

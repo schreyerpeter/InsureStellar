@@ -29,6 +29,11 @@ const AppHeader = styled.header`
   img {
     margin-right: 6vmin;
   }
+
+  a {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const AppBody = styled.div`

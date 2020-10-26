@@ -19,7 +19,12 @@ function RatingInformationForm(props: any) {
     const { updateQuote } = props;
     await updateQuote({ [option]: parseInt(e.currentTarget.value, 10) });
   };
-  const { variable_options: variableOptions, premium } = props.quote;
+  const {
+    variable_options: variableOptions,
+    premium,
+    isFetching,
+    hasError,
+  } = props.quote;
 
   if (!variableOptions) {
     return (
@@ -52,6 +57,7 @@ function RatingInformationForm(props: any) {
                 <span>{variableOptions[option].description}</span>
               </StyledLabel>
               <FormInput
+                disabled={isFetching}
                 as="select"
                 name={option}
                 key={option}
@@ -69,6 +75,9 @@ function RatingInformationForm(props: any) {
           ))}
         </Form>
       </FormContainer>
+      {hasError && (
+        <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>
+      )}
     </Fragment>
   );
 }

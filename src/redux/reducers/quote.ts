@@ -1,7 +1,7 @@
 import * as actionTypes from '../action-types';
 
 export default function (
-  state = { quote: {}, isFetching: false, hasError: false, inProgress: false },
+  state = { quote: {}, isFetching: false, hasError: false },
   action: any,
 ) {
   switch (action.type) {

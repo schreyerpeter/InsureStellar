@@ -25,6 +25,11 @@ export const BaseButton = css`
     border: 1px solid white;
     border-radius: 4px;
   }
+
+  &:disabled {
+    background-color: rgba(239, 239, 239, 0.6);
+    cursor: not-allowed;
+  }
 `;
 
 export const BaseFormInput = css`
@@ -35,6 +40,8 @@ export const BaseFormInput = css`
   border-radius: 6px;
   -webkit-transition: border 0.2s ease;
   transition: border 0.2s ease;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
   font-family: Montserrat, sans-serif;
   color: #141414;
   font-size: 16px;
@@ -46,6 +53,10 @@ export const BaseFormInput = css`
   @media (max-width: 992px) {
     grid-column: span 2;
   }
+  &:disabled {
+    background-color: rgba(239, 239, 239, 0.6);
+    cursor: not-allowed;
+  }
 `;
 
 export const BaseForm = css`
@@ -56,6 +67,10 @@ export const BaseForm = css`
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   grid-template-columns: 1fr 1fr;
+`;
+
+export const ErrorMessage = styled.div`
+  margin: 16px;
 `;
 
 export const FormContainer = styled.div`
