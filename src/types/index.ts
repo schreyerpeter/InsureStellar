@@ -38,16 +38,17 @@ type VariableSelectionType = {
 };
 
 export type AppStateType = {
-  hasError: boolean;
-  isFetching: boolean;
-  policy_holder: PolicyHolderType;
-  premium: number;
-  quote: {};
-  quoteId: string;
-  rating_address: RatingAddressType;
-  variable_options: {
-    deductible: VariableOptionType;
-    asteroid_collision: VariableOptionType;
-    variable_selections: VariableSelectionType;
+  quoteData: {
+    hasError: boolean;
+    isFetching: boolean;
+    policy_holder: PolicyHolderType;
+    premium: number;
+    quoteId: string;
+    rating_address: RatingAddressType;
+    variable_options: {
+      deductible: VariableOptionType;
+      asteroid_collision: VariableOptionType;
+      variable_selections: VariableSelectionType;
+    };
   };
 };

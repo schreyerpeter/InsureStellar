@@ -12,17 +12,17 @@ import {
   ErrorMessage,
   StyledLabel,
   OverviewContainer,
+  Title,
 } from './styled';
 import { updateQuote } from '../../redux/actions';
 
-function RatingInformationForm(props: any) {
+export function Overview(props: any) {
   const handleChange = async (e: any, option: string) => {
     const { updateQuote } = props;
     await updateQuote({ [option]: parseInt(e.currentTarget.value, 10) });
   };
   const {
-    variable_options: variableOptions,
-    premium,
+    quote: { variable_options: variableOptions, premium },
     isFetching,
     hasError,
   } = props.quote;
@@ -41,13 +41,15 @@ function RatingInformationForm(props: any) {
       </ErrorMessage>
     );
   }
-  const premiumInDollars = new Intl.NumberFormat('en-US', {
+  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  }).format(premium);
+  });
   return (
     <OverviewContainer>
-      <h2>Your annual premium is {premiumInDollars}</h2>
+      <Title data-testid="title">
+        Your annual premium is {formatter.format(premium)}
+      </Title>
       <FormContainer>
         <Form>
           {Object.keys(variableOptions).map((option) => (
@@ -68,7 +70,7 @@ function RatingInformationForm(props: any) {
               >
                 {variableOptions[option].values.map((value: number) => (
                   <option key={value} value={value}>
-                    {value}
+                    {formatter.format(value)}
                   </option>
                 ))}
               </FormInput>
@@ -88,9 +90,9 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: AppStateType) => {
-  return { quote: state.quote };
+  return { quote: state.quoteData };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RatingInformationForm),
+  connect(mapStateToProps, mapDispatchToProps)(Overview),
 );

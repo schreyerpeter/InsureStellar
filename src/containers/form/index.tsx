@@ -168,7 +168,7 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: AppStateType) => {
-  return { quote: state.quote };
+  return { quote: state.quoteData };
 };
 
 export default withRouter(

@@ -58,7 +58,9 @@ export const updateQuote = (field: UpdateQuoteParamsType) => async (
     type: actionTypes.UPDATE_QUOTE_FETCHING,
   });
   const {
-    quote: { quoteId, rating_address, policy_holder, variable_selections },
+    quoteData: {
+      quote: { quoteId, rating_address, policy_holder, variable_selections },
+    },
   } = getState();
 
   const data = {

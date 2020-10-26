@@ -33,3 +33,7 @@ export const StyledLabel = styled.label`
 export const OverviewContainer = styled.div`
   padding: 0;
 `;
+
+export const Title = styled.h2`
+  font-size: 3rem;
+`;

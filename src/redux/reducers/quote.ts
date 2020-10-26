@@ -9,7 +9,7 @@ export default function (
       return Object.assign({}, state, { isFetching: true });
     case actionTypes.CREATE_QUOTE_SUCCESS:
       return Object.assign({}, state, {
-        ...action.payload.quote,
+        ...action.payload,
         isFetching: false,
       });
     case actionTypes.CREATE_QUOTE_ERROR:
@@ -18,7 +18,7 @@ export default function (
       return Object.assign({}, state, { isFetching: true });
     case actionTypes.UPDATE_QUOTE_SUCCESS:
       return Object.assign({}, state, {
-        ...action.payload.quote,
+        ...action.payload,
         isFetching: false,
       });
     case actionTypes.UPDATE_QUOTE_ERROR:
