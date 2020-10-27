@@ -11,6 +11,7 @@ export default function (
       return Object.assign({}, state, {
         ...action.payload,
         isFetching: false,
+        hasError: false,
       });
     case actionTypes.CREATE_QUOTE_ERROR:
       return Object.assign({}, state, { hasError: true, isFetching: false });
@@ -20,6 +21,7 @@ export default function (
       return Object.assign({}, state, {
         ...action.payload,
         isFetching: false,
+        hasError: false,
       });
     case actionTypes.UPDATE_QUOTE_ERROR:
       return Object.assign({}, state, { hasError: true, isFetching: false });
