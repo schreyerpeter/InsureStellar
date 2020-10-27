@@ -1,6 +1,6 @@
 Welcome to InsureStellar, where all your wildest space travel insurance dreams come true.
 
-To try the app out the web, check it out at https://young-gorge-12705.herokuapp.com/
+To try the app out the web, check it out at https://insurestellar.herokuapp.com/
 
 Otherwise, keep reading for setup instructions.
 
