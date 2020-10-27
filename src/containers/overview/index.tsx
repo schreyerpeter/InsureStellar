@@ -64,6 +64,7 @@ export function Overview(props: any) {
                 as="select"
                 name={option}
                 key={option}
+                data-testid={`${option}-dropdown`}
                 onChange={(e: any) => {
                   handleChange(e, option);
                 }}

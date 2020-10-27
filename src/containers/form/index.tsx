@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-// ts-expect-error
 import * as Yup from 'yup';
 
 import { AppStateType } from '../../types';
@@ -17,7 +16,7 @@ import {
 import { createQuote } from '../../redux/actions';
 import '../../App.css';
 
-function RatingInformationForm(props: any) {
+export function RatingInformationForm(props: any) {
   const submitForm = async (values: any) => {
     const { createQuote, history } = props;
     const success = await createQuote(values);
@@ -64,7 +63,7 @@ function RatingInformationForm(props: any) {
         } = formik;
         return (
           <FormContainer>
-            <Form onSubmit={handleSubmit}>
+            <Form data-testid="rating-form" onSubmit={handleSubmit}>
               <FormInput
                 type="first_name"
                 name="first_name"
@@ -97,9 +96,7 @@ function RatingInformationForm(props: any) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 inputError={errors.line_1 && touched.line_1}
-                className={`form-input full-row ${
-                  errors.line_1 && touched.line_1 ? 'input-error' : ''
-                }`}
+                className="form-input full-row"
               />
               <FormInput
                 type="line_2"
