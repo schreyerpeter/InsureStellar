@@ -15,7 +15,7 @@ const AppHero = styled.img`
   top: -100px;
   left: auto;
   bottom: auto;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 
   @media (max-width: 992px) {
